@@ -14,14 +14,8 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  return (
-    <Wrapper>
-      <Title>Hello</Title>
-    </Wrapper>
-  );
+  return <div />
 }
 
 export default App;
 
-/* <Box bgColor="teal"/>
-<Circle bgColor="tomato"/> */
