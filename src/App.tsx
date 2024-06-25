@@ -1,7 +1,8 @@
 import styled, { keyframes } from "styled-components";
+import Circle from "./Circle";
 
 const Title = styled.h1`
-  color: ${props => props.theme.textColor};
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Wrapper = styled.div`
@@ -14,8 +15,12 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  return <div />
+  return (
+    <div>
+      <Circle bgColor="teal" />
+      <Circle bgColor="tomato" />
+    </div>
+  );
 }
 
 export default App;
-
