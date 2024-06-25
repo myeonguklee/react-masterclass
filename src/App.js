@@ -4,7 +4,7 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-const Emoji = styled.sapn`
+const Emoji = styled.span`
     font-size: 36px;
 `;
 
