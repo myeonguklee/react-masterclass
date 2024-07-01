@@ -1,3 +1,9 @@
+# Todo
+1. Coin 에서 뒤로 가기 버튼 만들기
+2. price component 꾸미기
+3. chart -> Candlestick chart로 바꿔보기
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
