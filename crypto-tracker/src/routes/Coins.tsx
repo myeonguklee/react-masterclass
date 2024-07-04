@@ -6,6 +6,7 @@ import { fetchCoins } from "../api";
 import { Helmet } from "react-helmet";
 import { useSetRecoilState } from "recoil";
 import { isDarkAtom } from "./atoms";
+import React from "react";
 
 const Container = styled.div`
   padding: 0px 20px;

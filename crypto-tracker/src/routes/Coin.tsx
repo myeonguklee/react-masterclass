@@ -13,6 +13,7 @@ import Chart from "./Chart";
 import Price from "./Price";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
+import React from "react";
 
 const Container = styled.div`
   padding: 0px 20px;
