@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
 import { Helmet } from "react-helmet";
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -20,11 +22,12 @@ const Header = styled.header`
 
 const CoinsList = styled.ul``;
 
-const Coin = styled.ul`
-  background-color: white;
-  color: ${(props) => props.theme.bgColor};
+const Coin = styled.li`
+  background-color: ${(props) => props.theme.cardBgColor};
+  color: ${(props) => props.theme.textColor};
   margin-bottom: 10px;
   border-radius: 15px;
+  border: 1px solid white;
   a {
     padding: 20px;
     transition: color 0.2s ease-in;
@@ -75,17 +78,18 @@ function Coins() {
   //     setLoding(false);
   //   })();
   // }, []);
-  const {isLoading, data} = useQuery<ICoin[]>("allCoins", fetchCoins)
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom(prev => !prev)
+  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
   // console.log(coins);
   return (
     <Container>
       <Helmet>
-        <title>
-          코인
-        </title>
+        <title>코인</title>
       </Helmet>
       <Header>
         <Title>코인</Title>
+        <button onClick={toggleDarkAtom}>Toggle Mode</button>
       </Header>
       {isLoading ? (
         <Loader>"Loading..."</Loader>
@@ -93,10 +97,12 @@ function Coins() {
         <CoinsList>
           {data?.slice(0, 100).map((coin) => (
             <Coin key={coin.id}>
-              <Link to={{
-                pathname:`/${coin.id}`,
-                state: { name: coin.name },
-              }}>
+              <Link
+                to={{
+                  pathname: `/${coin.id}`,
+                  state: { name: coin.name },
+                }}
+              >
                 <Img
                   src={`https://static.coinpaprika.com/coin/${coin.id}/logo.png`}
                 />

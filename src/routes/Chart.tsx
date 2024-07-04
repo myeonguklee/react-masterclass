@@ -1,6 +1,8 @@
 import { useQuery } from "react-query";
 import { fetchCoinHistory } from "../api";
 import ApexChart from "react-apexcharts";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 interface IHistorical {
   time_open: number;
@@ -17,11 +19,17 @@ interface ChartProps {
 }
 
 function Chart({ coinId }: ChartProps) {
-  const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () =>
-    fetchCoinHistory(coinId)
+  const isDark = useRecoilValue(isDarkAtom);
+
+  const { isLoading, data } = useQuery<IHistorical[]>(
+    ["ohlcv", coinId],
+    () => fetchCoinHistory(coinId),
+    {
+      refetchInterval: 10000,
+    }
   );
   return (
-    <h1>
+    <div>
       {isLoading ? (
         "Loading chart..."
       ) : (
@@ -35,7 +43,7 @@ function Chart({ coinId }: ChartProps) {
           ]}
           options={{
             theme: {
-              mode: "dark",
+              mode: isDark ? "dark" : "light",
             },
             chart: {
               height: 300,
@@ -43,7 +51,7 @@ function Chart({ coinId }: ChartProps) {
               toolbar: {
                 show: false,
               },
-              background: "transparent",
+              background: "transparent"
             },
             grid: { show: false },
             stroke: {
@@ -57,23 +65,23 @@ function Chart({ coinId }: ChartProps) {
               axisBorder: { show: false },
               axisTicks: { show: false },
               labels: { show: false },
-              type:"datetime",
-              categories: data?.map((price) => price.time_close)
+              type: "datetime",
+              categories: data?.map((price) => price.time_close),
             },
             fill: {
               type: "gradient",
-              gradient: { gradientToColors: ["blue"], stops: [0, 100] },
+              gradient: { gradientToColors: ["#0be881"], stops: [0, 100] },
             },
-            colors: ["red"],
+            colors: ["#0fbcf9"],
             tooltip: {
               y: {
-                formatter: (value) => `$ ${value.toFixed(1)}`
-              }
-            }
+                formatter: (value) => `$ ${value.toFixed(1)}`,
+              },
+            },
           }}
         />
       )}
-    </h1>
+    </div>
   );
 }
 
