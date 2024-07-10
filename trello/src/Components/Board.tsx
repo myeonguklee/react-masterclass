@@ -44,6 +44,7 @@ interface IBoardProps {
 }
 
 function Board({ toDos, boardId }: IBoardProps) {
+  //ref
   const inputRef = useRef<HTMLInputElement>(null);
   const onClick = () => {
     inputRef.current?.focus();
@@ -51,6 +52,7 @@ function Board({ toDos, boardId }: IBoardProps) {
       inputRef.current?.blur();
     }, 5000);
   };
+  // ref
   return (
     <Wrapper>
       <Title>{boardId}</Title>
