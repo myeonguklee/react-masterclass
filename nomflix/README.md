@@ -1,3 +1,11 @@
+# 더 해볼 것들
+* Home 페이지 영화 더보여주기(+ slider)
+* Tv shows 페이지 구현
+* Search 검색 결과 보여 주기
+* Movie 상세 페이지 구현
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
